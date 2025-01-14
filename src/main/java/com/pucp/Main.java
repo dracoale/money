@@ -26,8 +26,40 @@ public class Main {
         Money money=gson.fromJson(json,Money.class);
         System.out.println(money);
 
+        while(true){
+            System.out.println("####################################");
+            System.out.println("conversor money - enter number");
+            System.out.println("1) Dollar >>> Argentine Peso");
+            System.out.println("2) Argentine Peso >>> Dollar");
+            System.out.println("3) Dollar >>> Colombian Peso");
+            System.out.println("7) Exit");
+
+            int option = scanner.nextInt();
+
+            if (option == 7) {
+                break;
+            }
+
+            System.out.println("Enter amount:");
+            double amount = scanner.nextDouble();
+
+            if (option == 1) {
+                System.out.printf("The conversion of %.2f Dollars is %.2f Argentine Pesos\n"
+                        , amount, money.conversion.get("ARS")*amount);
+            } else if (option == 2) {
+                System.out.printf("The conversion of %.2f Argentine Pesos is %.2f Dollars\n"
+                        , amount, amount/money.conversion.get("USD"));
+            } else if (option == 3) {
+                System.out.printf("The conversion of %.2f Dollars is %.2f Colombian Pesos\n"
+                        , amount, money.conversion.get("COP")*amount);
+            } else {
+                System.out.println("Invalid option, please enter a valid option.");
+            }
+        }
+
+        scanner.close();
+        }
 
 
     }
 
-}
